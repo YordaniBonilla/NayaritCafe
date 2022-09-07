@@ -7,6 +7,7 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, './front/dist'),
+    clean: true
     
   },
   module:{
@@ -26,7 +27,9 @@ module.exports = {
           include: path.resolve(__dirname, './front/src'),
           exclude: /node_modules/,
           use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader          
+          },
           {
             loader: 'css-loader', options: { importLoaders: 1}
           },
@@ -46,16 +49,19 @@ module.exports = {
     static: './front/dist',
     hot: true,
     port: 3000,
+    open:true
   },
   plugins: [
     // Re-generate index.html with injected script tag.
     // The injected script tag contains a src value of the
     // filename output defined above.
     new HtmlWebpackPlugin({
-      inject: true,
-      template: path.resolve(__dirname,'./front/dist/index.html'),
+      inject: 'body',
+      template: path.resolve(__dirname,'./front/dist/index.html')
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    })
   ]
   
 };
