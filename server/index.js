@@ -9,7 +9,7 @@ var app = express();
 const PORT = process.env.PORT || 5001;
 
 //global middleware
-app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(express.static(__dirname + '/../front/dist'));
 
   // support parsing of application/json type post data
 app.use(bodyParser.json());
