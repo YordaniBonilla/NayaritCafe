@@ -23,27 +23,30 @@ module.exports = {
         }
       },
       {
-          test: /\.css$/i,
-          include: path.resolve(__dirname, './front/src'),
-          exclude: /node_modules/,
-          use: [
-          {
-            loader: MiniCssExtractPlugin.loader          
-          },
-          {
-            loader: 'css-loader', options: { importLoaders: 1}
-          },
-          'postcss-loader',],
+        test:/\.css$/,
+        // exclude: /node_modules/,
+        use:['style-loader',{
+          loader: 'css-loader', options: { importLoaders: 2}
+        },'postcss-loader'],
       },
-      {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
-        use: ['file-loader'],
-      },
+        {
+         test: /\.(png|jp(e*)g|svg|gif|woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+         use: [
+           {
+             loader: 'file-loader',
+             options: {
+               name: '[name].[ext]',
+               outputPath: 'fonts/'
+             }
+           }
+         ],
+       },
       {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       }
     ]
+    
   },
   devServer: {
     static: './front/dist',
@@ -58,9 +61,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: 'body',
       template: path.resolve(__dirname,'./front/dist/index.html')
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css'
     })
   ]
   
