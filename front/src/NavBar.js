@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,18 +9,25 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
+import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-const drawerWidth = 240;
+//sets drawe width
+const drawerWidth = 200;
 const navItems = ['Home', 'About', 'Contact'];
 
 function NavBar(props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  //declare mobileOpen var
+  //declarefunction that will manipulate said var
+  //initiate as false
+  const [mobileOpen, setMobileOpen] = useState(false);
 
+  //when called it will toggle function and set it to true
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -47,7 +54,7 @@ function NavBar(props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar component="nav">
+      <AppBar component="nav" position="static">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -56,22 +63,24 @@ function NavBar(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: 'none' } }}
           >
-            <MenuIcon />
+            <BakeryDiningIcon />
           </IconButton>
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            MUI
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }}}
+          >   
+            Ak'olin
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Typography>
+          <Box sx={{ display: { xs: 'none', sm: 'block' }}}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
+              <Button key={item} sx={{ color: '#fff'}}>
                 {item}
               </Button>
             ))}
           </Box>
+          </Typography>
         </Toolbar>
       </AppBar>
       <Box component="nav">
