@@ -1,17 +1,21 @@
 import React from "react"
 import NavBar from './NavBar.js'
-import Body from './Body.js'
-import Box from '@mui/material/Box'
-import { ThemeProvider } from '@mui/material/styles'
-import theme from './theme.js'
+
+
+import Box from '@mui/material/Box';
+import ProductsCard from "./ProductsCard.js";
 
 function App() {
 
   return (
-    <ThemeProvider theme={theme}>
-    <NavBar/>
-    <Body/>
-    </ThemeProvider>    
+    <Box>
+
+<NavBar/>
+    <Box component="main" sx={{ p: 3 }}>
+        <ProductsCard/>
+    </Box> 
+    </Box>
+    
   );
 }
 
